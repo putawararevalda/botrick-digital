@@ -1,0 +1,250 @@
+:root {
+    --bg-color: #2c3e50;
+    --panel-bg: #34495e;
+    --text-color: #ecf0f1;
+    --card-w: 60px;
+    --card-h: 84px;
+    --suit-A: #e74c3c;
+    --suit-B: #f1c40f;
+    --suit-C: #2ecc71;
+    --suit-D: #3498db;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+#game-container {
+    width: 1000px;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    background: #1a252f;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.player-area {
+    background: var(--panel-bg);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.top { flex: 2; display: flex; flex-direction: column; }
+.middle-row { flex: 4; display: flex; flex-direction: row; }
+.side { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.bottom { flex: 2; display: flex; flex-direction: column; }
+#play-area { flex: 3; display: flex; flex-direction: column; align-items: center; position: relative;}
+
+.player-info { margin-bottom: 5px; text-align: center; }
+
+/* Droco specific */
+.droco-hand-columns {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+.hand-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    min-height: 100px;
+    border: 1px dashed #7f8c8d;
+    border-radius: 5px;
+    padding-top: 5px;
+}
+.hand-column .card {
+    margin-bottom: -40px; /* Overlap cards in column */
+}
+
+/* Play Area */
+.round-info { position: absolute; top: 10px; left: 10px; font-weight: bold; }
+.trump-area { position: absolute; top: 10px; right: 10px; text-align: center; }
+.trick-cards {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin-top: 50px;
+}
+.trick-slot {
+    position: absolute;
+    width: var(--card-w);
+    height: var(--card-h);
+    border: 2px dashed #7f8c8d;
+    border-radius: 5px;
+}
+.trick-slot.top { top: 0; left: 120px; }
+.trick-slot.bottom { bottom: 0; left: 120px; }
+.trick-slot.left { top: 108px; left: 0; }
+.trick-slot.right { top: 108px; right: 0; }
+
+.leader-icon {
+    position: absolute;
+    top: -15px;
+    right: -25px;
+    background: #e74c3c;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: bold;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    white-space: nowrap;
+    z-index: 10;
+}
+
+#action-msg { margin-top: 20px; font-size: 1.2em; font-weight: bold; text-align: center;}
+#next-btn { margin-top: 10px; padding: 10px 20px; cursor: pointer; }
+.hidden { display: none !important; }
+
+/* Hand & Hangars */
+.hand-row {
+    display: flex;
+    justify-content: center;
+    min-height: var(--card-h);
+    gap: 5px;
+    flex-wrap: wrap;
+}
+.hangars {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    min-height: var(--card-h);
+    margin: 5px 0;
+    flex-wrap: wrap;
+}
+.hangars-area, .fd-area {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.area-label { font-size: 0.8em; color: #bdc3c7; margin-bottom: 2px; }
+
+/* Card Styling */
+.card {
+    width: var(--card-w);
+    height: var(--card-h);
+    background: white;
+    border-radius: 5px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3px;
+    position: relative;
+    user-select: none;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    border: 2px solid #ccc;
+}
+.card.face-down {
+    background: #2c3e50;
+    border: 2px solid white;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #34495e 10px, #34495e 20px);
+}
+.card .val { font-size: 14px; font-weight: bold; }
+.card .val.top { text-align: left; }
+.card .val.bottom { text-align: right; transform: rotate(180deg); }
+.card .suit { font-size: 20px; text-align: center; font-weight: bold; }
+.card .vp {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    font-size: 10px;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.card[data-suit="A"] { border-color: var(--suit-A); }
+.card[data-suit="A"] .suit { color: var(--suit-A); }
+.card[data-suit="B"] { border-color: var(--suit-B); }
+.card[data-suit="B"] .suit { color: var(--suit-B); }
+.card[data-suit="C"] { border-color: var(--suit-C); }
+.card[data-suit="C"] .suit { color: var(--suit-C); }
+.card[data-suit="D"] { border-color: var(--suit-D); }
+.card[data-suit="D"] .suit { color: var(--suit-D); }
+
+.card.playable {
+    cursor: pointer;
+    box-shadow: 0 0 5px 2px #f1c40f;
+    transition: transform 0.1s;
+}
+.card.playable:hover { transform: translateY(-5px); }
+.card.disabled { opacity: 0.5; filter: grayscale(100%); cursor: not-allowed; }
+.card.selected-to-pass { transform: translateY(-10px); box-shadow: 0 0 5px 2px #2ecc71;}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.modal-content {
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 600px;
+}
+.modal h2 { margin-bottom: 20px; }
+#pass-hand-display { margin-bottom: 20px; }
+button { padding: 10px 15px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; background: #3498db; color: white;}
+button:disabled { background: #95a5a6; cursor: not-allowed; }
+
+.ai-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 5px auto;
+}
+
+.ai-card {
+    background: #fff;
+    color: #000;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    width: 200px;
+    text-align: left;
+}
+
+.ai-card-img-wrapper {
+    width: 200px;
+    height: 140px; /* Cropped height */
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#ai-card-img {
+    position: absolute;
+    /* The original image is vertical and rotated 90deg clockwise. We rotate it back -90deg. */
+    transform: rotate(-90deg);
+    /* Adjust width/height to fit after rotation */
+    width: 300px;
+    height: auto;
+    /* Adjust origin and position to center the card */
+    top: -80px;
+    left: -50px;
+}

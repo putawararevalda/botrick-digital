@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotrick Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Top: Droco (AI) -->
+        <div id="droco-area" class="player-area top">
+            <div class="player-info">
+                <h2>Droco (AI)</h2>
+                <div class="ai-card-container">
+                    <div id="active-ai-card" class="ai-card">AI Card Area</div>
+                    <div class="ai-card-img-wrapper">
+                        <img id="ai-card-img" src="" alt="AI Card" />
+                    </div>
+                </div>
+            </div>
+            <div class="droco-hand-columns">
+                <div id="droco-col-A" class="hand-column" data-type="A"></div>
+                <div id="droco-col-B" class="hand-column" data-type="B"></div>
+                <div id="droco-col-C" class="hand-column" data-type="C"></div>
+                <div id="droco-col-D" class="hand-column" data-type="D"></div>
+            </div>
+        </div>
+
+        <!-- Middle: Bots & Play Area -->
+        <div class="middle-row">
+            <!-- Left: Bot 1 -->
+            <div id="bot1-area" class="player-area side">
+                <div class="player-info"><h2>Bot 1</h2></div>
+                <div class="stats">Hand: <span id="bot1-hand-count">12</span></div>
+                <div class="hangars-area">
+                    <div class="area-label">+ Points</div>
+                    <div class="hangars" id="bot1-hangars"></div>
+                </div>
+                <div class="fd-area">
+                    <div class="area-label">- Points</div>
+                    <div class="hangars" id="bot1-fd"></div>
+                </div>
+            </div>
+
+            <!-- Center: Play Area -->
+            <div id="play-area">
+                <div class="round-info">
+                    Round: <span id="round-num">1</span>/3 | Trick: <span id="trick-num">1</span>/12
+                </div>
+                <div class="trump-area">
+                    Trump: <div id="trump-card" class="card-slot"></div>
+                </div>
+                <div class="trick-cards">
+                    <div class="trick-slot top" id="trick-droco"></div>
+                    <div class="trick-slot left" id="trick-bot1"></div>
+                    <div class="trick-slot right" id="trick-bot2"></div>
+                    <div class="trick-slot bottom" id="trick-player"></div>
+                </div>
+                <div id="action-msg">Game is starting...</div>
+                <button id="next-btn" class="hidden">Next</button>
+            </div>
+
+            <!-- Right: Bot 2 -->
+            <div id="bot2-area" class="player-area side">
+                <div class="player-info"><h2>Bot 2</h2></div>
+                <div class="stats">Hand: <span id="bot2-hand-count">12</span></div>
+                <div class="hangars-area">
+                    <div class="area-label">+ Points</div>
+                    <div class="hangars" id="bot2-hangars"></div>
+                </div>
+                <div class="fd-area">
+                    <div class="area-label">- Points</div>
+                    <div class="hangars" id="bot2-fd"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom: Human Player -->
+        <div id="player-area" class="player-area bottom">
+            <div class="player-info">
+                <h2>You</h2>
+                <div class="score">Score: <span id="player-score">0</span></div>
+            </div>
+            <div class="hangars-area">
+                <div class="area-label">+ Points</div>
+                <div class="hangars" id="player-hangars"></div>
+            </div>
+            <div class="fd-area">
+                <div class="area-label">- Points</div>
+                <div class="hangars" id="player-fd"></div>
+            </div>
+            <div id="player-hand" class="hand-row"></div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="pass-cards-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Select 2 cards to pass left</h2>
+            <div id="pass-hand-display" class="hand-row"></div>
+            <button id="confirm-pass-btn" disabled>Confirm Pass</button>
+        </div>
+    </div>
+    
+    <div id="score-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Round Over</h2>
+            <div id="score-details"></div>
+            <button id="next-round-btn">Start Next Round</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

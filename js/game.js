@@ -121,7 +121,10 @@ export class Game {
         modal.classList.remove('hidden');
         
         document.getElementById('pass-round-info').innerHTML = `
-            <div style="margin-bottom: 5px;"><strong>First Player:</strong> Droco (always leads first trick)</div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <div><strong>First Player:</strong> Droco (always leads first trick)</div>
+                <div><strong>Trump Suit:</strong> <span style="font-size: 1.2em; font-weight: bold; color: var(--suit-${this.trumpCard.suit});">${this.trumpCard.suit}</span></div>
+            </div>
             <div><strong>Droco Strategy (${this.currentAiCard.name}):</strong></div>
             <ul style="margin: 5px 0 0 20px; list-style-type: square;">
                 <li><strong>Lead:</strong> ${this.currentAiCard.rules.lead.primary} ${this.currentAiCard.rules.lead.secondary ? '(' + this.currentAiCard.rules.lead.secondary + ')' : ''}</li>

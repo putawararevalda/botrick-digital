@@ -120,6 +120,9 @@ export class Game {
         const modal = document.getElementById('pass-cards-modal');
         modal.classList.remove('hidden');
         
+        // Render Droco's open hand so player can see it
+        UI.renderHand('pass-droco-hand', this.players.droco.hand);
+        
         const renderPassHand = () => {
             UI.renderHand('pass-hand-display', this.players.player.hand, (card, el) => {
                 if (this.cardsToPass.includes(card)) {

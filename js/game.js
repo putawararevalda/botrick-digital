@@ -120,8 +120,22 @@ export class Game {
         const modal = document.getElementById('pass-cards-modal');
         modal.classList.remove('hidden');
         
-        // Render Droco's open hand so player can see it
-        UI.renderHand('pass-droco-hand', this.players.droco.hand);
+        document.getElementById('pass-round-info').innerHTML = `
+            <div style="margin-bottom: 5px;"><strong>First Player:</strong> Droco (always leads first trick)</div>
+            <div><strong>Droco Strategy (${this.currentAiCard.name}):</strong></div>
+            <ul style="margin: 5px 0 0 20px; list-style-type: square;">
+                <li><strong>Lead:</strong> ${this.currentAiCard.rules.lead.primary} ${this.currentAiCard.rules.lead.secondary ? '(' + this.currentAiCard.rules.lead.secondary + ')' : ''}</li>
+                <li><strong>Follow:</strong> ${this.currentAiCard.rules.follow.primary} ${this.currentAiCard.rules.follow.secondary ? '(' + this.currentAiCard.rules.follow.secondary + ')' : ''}</li>
+                <li><strong>Unfollow:</strong> ${this.currentAiCard.rules.unfollow.primary} ${this.currentAiCard.rules.unfollow.secondary ? '(' + this.currentAiCard.rules.unfollow.secondary + ')' : ''}</li>
+            </ul>
+        `;
+        
+        // Render Droco's open hand so player can see it, sorted by Suit then Value (desc)
+        const sortedDrocoHand = [...this.players.droco.hand].sort((a, b) => {
+            if (a.suit !== b.suit) return a.suit.localeCompare(b.suit);
+            return b.value - a.value;
+        });
+        UI.renderHand('pass-droco-hand', sortedDrocoHand);
         
         const renderPassHand = () => {
             UI.renderHand('pass-hand-display', this.players.player.hand, (card, el) => {

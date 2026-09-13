@@ -2,8 +2,8 @@
     --bg-color: #2c3e50;
     --panel-bg: #34495e;
     --text-color: #ecf0f1;
-    --card-w: 60px;
-    --card-h: 84px;
+    --card-w: 80px;
+    --card-h: 120px;
     --suit-A: #e74c3c;
     --suit-B: #f1c40f;
     --suit-C: #2ecc71;
@@ -137,47 +137,50 @@ body {
 .card {
     width: var(--card-w);
     height: var(--card-h);
-    background: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 5px;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 3px;
     position: relative;
     user-select: none;
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    border: 2px solid #ccc;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    font-family: 'Impact', 'Arial Black', sans-serif;
 }
 .card.face-down {
     background: #2c3e50;
     border: 2px solid white;
     background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #34495e 10px, #34495e 20px);
 }
-.card .val { font-size: 14px; font-weight: bold; }
-.card .val.top { text-align: left; }
-.card .val.bottom { text-align: right; transform: rotate(180deg); }
-.card .suit { font-size: 20px; text-align: center; font-weight: bold; }
+
+.card .val-main {
+    position: absolute;
+    font-size: calc(var(--card-w) * 0.25);
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+    letter-spacing: -1px;
+    top: 5.3%;
+}
+.card .val-left { left: 10.6%; }
+.card .val-right { right: 10.6%; }
+
 .card .vp {
     position: absolute;
-    bottom: 2px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: black;
+    font-size: calc(var(--card-w) * 0.055);
+    font-family: 'Arial Narrow', sans-serif;
+    font-weight: bold;
     color: white;
-    font-size: 10px;
-    padding: 1px 4px;
-    border-radius: 3px;
+    text-align: center;
+    width: 9%;
 }
+.card .vp-top { top: 7.5%; left: 45.5%; }
+.card .vp-left { top: 33.1%; left: 12.4%; }
+.card .vp-right { top: 33.1%; right: 11.7%; }
 
-.card[data-suit="A"] { border-color: var(--suit-A); }
-.card[data-suit="A"] .suit { color: var(--suit-A); }
-.card[data-suit="B"] { border-color: var(--suit-B); }
-.card[data-suit="B"] .suit { color: var(--suit-B); }
-.card[data-suit="C"] { border-color: var(--suit-C); }
-.card[data-suit="C"] .suit { color: var(--suit-C); }
-.card[data-suit="D"] { border-color: var(--suit-D); }
-.card[data-suit="D"] .suit { color: var(--suit-D); }
+.card[data-suit="A"] { background-image: url('playing_cards/card_1.webp'); }
+.card[data-suit="B"] { background-image: url('playing_cards/card_2.webp'); }
+.card[data-suit="C"] { background-image: url('playing_cards/card_3.webp'); }
+.card[data-suit="D"] { background-image: url('playing_cards/card_4.webp'); }
 
 .card.playable {
     cursor: pointer;

@@ -14,10 +14,11 @@ export function createCardElement(card, faceDown = false) {
     el.dataset.id = card.id;
 
     el.innerHTML = `
-        <div class="val top">${card.value}</div>
-        <div class="suit">${card.suit}</div>
-        <div class="val bottom">${card.value}</div>
-        <div class="vp">${card.vp}</div>
+        <div class="val-main val-left">${card.value}</div>
+        <div class="val-main val-right">${card.value}</div>
+        <div class="vp vp-top">${card.vp}</div>
+        <div class="vp vp-left">${card.vp}</div>
+        <div class="vp vp-right">${card.vp}</div>
     `;
 
     return el;

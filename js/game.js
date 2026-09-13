@@ -85,7 +85,8 @@ export class Game {
             <strong>Round ${this.round} - ${this.currentAiCard.name}</strong><br>
             Lead: ${this.currentAiCard.rules.lead.primary} ${this.currentAiCard.rules.lead.secondary ? '(' + this.currentAiCard.rules.lead.secondary + ')' : ''}<br>
             Follow: ${this.currentAiCard.rules.follow.primary} ${this.currentAiCard.rules.follow.secondary ? '(' + this.currentAiCard.rules.follow.secondary + ')' : ''}<br>
-            Unfollow: ${this.currentAiCard.rules.unfollow.primary} ${this.currentAiCard.rules.unfollow.secondary ? '(' + this.currentAiCard.rules.unfollow.secondary + ')' : ''}
+            Unfollow: ${this.currentAiCard.rules.unfollow.primary} ${this.currentAiCard.rules.unfollow.secondary ? '(' + this.currentAiCard.rules.unfollow.secondary + ')' : ''}<br>
+            <em>Tie-breaker: A > B > C > D</em>
         `;
         document.getElementById('ai-card-img').src = this.currentAiCard.image;
 

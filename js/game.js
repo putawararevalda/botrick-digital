@@ -28,6 +28,7 @@ export class Game {
         this.trumpCard = null;
         this.currentAiCard = AICards[0]; // Using standard AI for now
         this.trickCards = []; // { player: id, card: Card }
+        this.botDifficulty = 'normal';
         this.ledSuit = null;
         this.turnOrder = [];
         this.currentTurnIdx = 0;
@@ -156,6 +157,13 @@ export class Game {
         renderPassHand();
         
         document.getElementById('confirm-pass-btn').onclick = () => {
+            this.botDifficulty = document.getElementById('bot-difficulty').value;
+            let icon = '🟡';
+            if (this.botDifficulty === 'easy') icon = '🟢';
+            if (this.botDifficulty === 'hard') icon = '🔴';
+            document.getElementById('bot1-diff-icon').innerText = icon;
+            document.getElementById('bot2-diff-icon').innerText = icon;
+            
             modal.classList.add('hidden');
             this.executePass();
         };
@@ -225,7 +233,7 @@ export class Game {
             if (currentPlayerId === 'droco') {
                 playCard = getDrocoPlay(state.hand, this.ledSuit, this.currentAiCard);
             } else {
-                playCard = getBotPlay(state.hand, this.ledSuit, this.trickCards, state, this.trumpCard.suit);
+                playCard = getBotPlay(state.hand, this.ledSuit, this.trickCards, state, this.trumpCard.suit, this.botDifficulty);
             }
             
             this.executePlay(currentPlayerId, playCard);

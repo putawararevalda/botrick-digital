@@ -31,7 +31,7 @@
         <div class="middle-row">
             <!-- Left: Bot 1 -->
             <div id="bot1-area" class="player-area side">
-                <div class="player-info"><h2>Bot 1</h2></div>
+                <div class="player-info"><h2>Bot 1 <span id="bot1-diff-icon">🟡</span></h2></div>
                 <div class="stats">Hand: <span id="bot1-hand-count">12</span></div>
                 <div class="hangars-area">
                     <div class="area-label">+ Points</div>
@@ -63,7 +63,7 @@
 
             <!-- Right: Bot 2 -->
             <div id="bot2-area" class="player-area side">
-                <div class="player-info"><h2>Bot 2</h2></div>
+                <div class="player-info"><h2>Bot 2 <span id="bot2-diff-icon">🟡</span></h2></div>
                 <div class="stats">Hand: <span id="bot2-hand-count">12</span></div>
                 <div class="hangars-area">
                     <div class="area-label">+ Points</div>
@@ -98,7 +98,18 @@
     <div id="pass-cards-modal" class="modal hidden">
         <div class="modal-content">
             <h2>Select 2 Cards to Pass Left <a href="https://youtu.be/ZTEf_iKWAwE?si=NTVY02cqhJNMPPQ2&t=403" target="_blank" style="font-size: 0.6em; margin-left: 10px; color: #3498db; text-decoration: none;">(Watch Tutorial)</a></h2>
+            
+            <div id="difficulty-selector-container" style="margin-bottom: 15px;">
+                <label for="bot-difficulty" style="font-weight: bold; font-size: 1.1em; color: #ecf0f1;">Bot Difficulty: </label>
+                <select id="bot-difficulty" style="padding: 5px 10px; border-radius: 5px; font-size: 1em; background: #34495e; color: white; border: 1px solid #7f8c8d; cursor: pointer;">
+                    <option value="easy">Easy (🟢)</option>
+                    <option value="normal" selected>Normal (🟡)</option>
+                    <option value="hard">Hard (🔴)</option>
+                </select>
+            </div>
+
             <div id="pass-round-info" style="margin-bottom: 15px; background: #2c3e50; padding: 10px; border-radius: 5px; text-align: left; font-size: 0.9em; border: 1px solid #7f8c8d;"></div>
+
             <p>Droco's Open Hand:</p>
             <div id="pass-droco-hand" class="hand-row"></div>
             <p>Your Hand:</p>
